@@ -1,0 +1,26 @@
+{
+    "name": "cvirando/pages-module",
+    "description": "Tunnel CRM pages module.",
+    "type": "laravel-module",
+    "license": "GPL-3.0-only",
+    "homepage": "https://github.com/cvirando/pages-module",
+    "authors": [
+        {
+            "name": "CV. IRANDO",
+            "email": "info@irando.co.id"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Pages\\": ""
+        }
+    }
+}

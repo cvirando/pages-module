@@ -1,0 +1,18 @@
+{
+    "name": "Pages",
+    "alias": "pages",
+    "description": "Add pages to your project.",
+    "keywords": [
+        "cv irando",
+        "irando",
+        "page",
+        "pages",
+        "module",
+        "modules"
+    ],
+    "priority": 0,
+    "providers": [
+        "Modules\\Pages\\Providers\\PagesServiceProvider"
+    ],
+    "files": []
+}
