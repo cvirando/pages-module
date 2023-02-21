@@ -1,5 +1,5 @@
 {
-    "name": "cvirando/pages-module",
+    "name": "cvirando/pages",
     "description": "Tunnel CRM pages module.",
     "type": "laravel-module",
     "license": "GPL-3.0-only",
