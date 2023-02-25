@@ -22,5 +22,9 @@
         "psr-4": {
             "Modules\\Pages\\": ""
         }
+    },
+    "require": {
+        "spatie/laravel-sluggable": "^3.4",
+        "intervention/image": "^2.7"
     }
 }

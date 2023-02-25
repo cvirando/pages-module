@@ -5,7 +5,7 @@
  * https://irando.co.id ©2023
  * info@irando.co.id
  */
- 
+
 namespace Modules\Pages\Database\Seeders;
 
 use Illuminate\Database\Seeder;
@@ -24,6 +24,7 @@ class PagesDatabaseSeeder extends Seeder
 
         $this->call([
             RolesTableSeeder::class,
+            SeedPagesTableSeeder::class,
         ]);
     }
 }
