@@ -1,5 +1,20 @@
 @extends('layouts.app')
 
+@section('breadcrumbs')
+    <div class="col">
+        <!-- Page pre-title -->
+        <div class="page-pretitle">
+        Module
+        </div>
+        <h2 class="page-title">
+        Pages
+        </h2>
+    </div>
+@endsection
+
+@section('pagelinks')
+@endsection
+
 @section('content')
 
 <div class="container">
