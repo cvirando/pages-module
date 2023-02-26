@@ -82,8 +82,8 @@ class PagesController extends Controller
                     Image::make($image)->save($pathToBigImage);
                     $seo->photo = $filename;
                 }
-                $seo->seoble_id = $page->id;
-                $seo->seoble_type = 'Modules\Pages\Entities\Page';
+                $seo->seoable_id = $page->id;
+                $seo->seoable_type = 'Modules\Pages\Entities\Page';
                 $page->save();
             }
         } else {
@@ -162,8 +162,8 @@ class PagesController extends Controller
                     Image::make($image)->save($pathToBigImage);
                     $seo->photo = $filename;
                 }
-                $seo->seoble_id = $page->id;
-                $seo->seoble_type = 'Modules\Pages\Entities\Page';
+                $seo->seoable_id = $page->id;
+                $seo->seoable_type = 'Modules\Pages\Entities\Page';
                 $page->save();
             }
         } else {
