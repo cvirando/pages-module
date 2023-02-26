@@ -15,6 +15,7 @@ use Modules\Pages\Entities\Page;
 use Illuminate\Support\Str;
 use Storage;
 use Image;
+use Schema;
 
 class PagesController extends Controller
 {
@@ -64,7 +65,30 @@ class PagesController extends Controller
             Image::make($image)->save($pathToBigImage);
             $page->photo = $filename;
         }
-        $page->save();
+        if(Schema::hasTable('seos')) {
+            if($page->save()) {
+                $seo = new \Modules\Seo\Entities\Seo;
+                $seo->name = $request->input('seo_name');
+                $seo->tags = $request->input('seo_tags');
+                $seo->description = $request->input('seo_description');
+                if ($request->hasFile('seo_photo')) {
+                    $image = $request->file('seo_photo');
+                    $filename = 'seo-' . time() . '.' . $image->getClientOriginalExtension();
+                    $location = public_path('images/'. $filename);
+                    $pathToThumbImage = public_path('images/thumb/'. $filename);
+                    $pathToBigImage = public_path('images/big/'. $filename);
+                    Image::make($image)->resize(1200, 672)->save($location); // for social media
+                    Image::make($image)->resize(250, 250)->save($pathToThumbImage);
+                    Image::make($image)->save($pathToBigImage);
+                    $seo->photo = $filename;
+                }
+                $seo->seoble_id = $page->id;
+                $seo->seoble_type = 'Modules\Pages\Entities\Page';
+                $page->save();
+            }
+        } else {
+            $page->save();
+        }
         return redirect()->route('pagesIndex');
     }
 
@@ -86,7 +110,12 @@ class PagesController extends Controller
     public function edit($id)
     {
         $page = Page::findOrFail($id);
-        return view('pages::edit', compact('page'));
+        if(Schema::hasTable('seos')) {
+            $seo = $page->seo()->first();
+            return view('pages::edit', compact('page', 'seo'));
+        } else {
+            return view('pages::edit', compact('page'));
+        }
     }
 
     /**
@@ -116,7 +145,30 @@ class PagesController extends Controller
                 Storage::delete($oldFilename);
             }
         }
-        $page->save();
+        if(Schema::hasTable('seos')) {
+            if($page->save()) {
+                $seo = new \Modules\Seo\Entities\Seo;
+                $seo->name = $request->input('seo_name');
+                $seo->tags = $request->input('seo_tags');
+                $seo->description = $request->input('seo_description');
+                if ($request->hasFile('seo_photo')) {
+                    $image = $request->file('seo_photo');
+                    $filename = 'seo-' . time() . '.' . $image->getClientOriginalExtension();
+                    $location = public_path('images/'. $filename);
+                    $pathToThumbImage = public_path('images/thumb/'. $filename);
+                    $pathToBigImage = public_path('images/big/'. $filename);
+                    Image::make($image)->resize(1200, 672)->save($location); // for social media
+                    Image::make($image)->resize(250, 250)->save($pathToThumbImage);
+                    Image::make($image)->save($pathToBigImage);
+                    $seo->photo = $filename;
+                }
+                $seo->seoble_id = $page->id;
+                $seo->seoble_type = 'Modules\Pages\Entities\Page';
+                $page->save();
+            }
+        } else {
+            $page->save();
+        }
         return redirect()->route('pagesIndex');
     }
 
