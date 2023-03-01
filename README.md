@@ -2,7 +2,7 @@
 
 Tunnel CRM pages module.
 
-## Install
+## How to install
 
 ```
 composer require cvirando/pages-module
