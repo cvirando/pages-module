@@ -9,13 +9,13 @@
 namespace Modules\Pages\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Pages\Entities\Page;
 use Illuminate\Support\Str;
 use Storage;
 use Image;
-use Schema;
 
 class PagesController extends Controller
 {

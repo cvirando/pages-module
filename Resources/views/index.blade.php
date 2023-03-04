@@ -13,19 +13,19 @@
 @endsection
 
 @section('pagelinks')
+<div class="col-auto ms-auto d-print-none">
+    <div class="btn-list"></div>
+    <div class="d-none d-sm-inline">
+        <a class="btn btn-primary btn-block my-2" href="{{route('pagesCreate')}}">Add New</a>
+    </div>
+</div>
 @endsection
 
 @section('content')
-
 <div class="container">
     <div class="row">
             <div class="col-md-12">
-                <p>
-                    <a class="btn btn-sm btn-info" href="{{route('pagesIndex')}}">Pages</a>
-                    <span class="float-end">
-                        <a class="btn btn-sm btn-success" href="{{route('pagesCreate')}}">Add New</a>
-                    </span>
-                </p>
+                <a class="btn btn-success btn-block my-2" href="{{route('blogPostsCreate')}}">Settigns</a>
             </div>
             <div class="col-md-12">
                 <div class="card">
