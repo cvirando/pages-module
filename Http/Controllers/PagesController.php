@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Pages\Entities\Page;
 use Illuminate\Support\Str;
+use Notification;
 use Storage;
 use Image;
 
@@ -89,6 +90,23 @@ class PagesController extends Controller
         } else {
             $page->save();
         }
+
+        if($page->active) {
+            if(Schema::hasTable('telegram_settings')) {
+                $type = $page->photo != null ? 'image' : 'text';
+                $image = $page->photo != null ? url('images').'/'.$page->photo : null;
+                $Tset = \Modules\Telegram\Entities\TelegramSetting::pluck('auto_pages');
+                if($Tset == '[true]'){
+                    $token = config('telegram.telegram-bot-api.token');
+                    $channels = \Modules\Telegram\Entities\TelegramChannel::all();
+
+                    foreach($channels as $channel) {
+                        Notification::route('telegram', $channel->channel_id)->notify(new \Modules\Telegram\Notifications\TelegramSendMessage($type, "NEW PAGE!\n\n*".$page->name."*", null, null, $image, null, null, null, null, null));
+                    }
+                }
+            }
+        }
+
         return redirect()->route('pagesIndex');
     }
 
